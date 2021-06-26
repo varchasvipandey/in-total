@@ -1,0 +1,27 @@
+.display {
+  padding: 0 2rem;
+  &__query {
+    text-align: right;
+    font-size: 1.6rem;
+    overflow-x: auto;
+  }
+
+  &__input {
+    background-color: transparent;
+    font-size: 6.4rem;
+    text-align: right;
+    width: 100%;
+    color: var(--color-text);
+    border: none;
+    margin-top: 1.2rem;
+    min-height: 8rem;
+
+    &:focus {
+      outline: none;
+    }
+
+    &::placeholder {
+      color: var(--color-text);
+    }
+  }
+}

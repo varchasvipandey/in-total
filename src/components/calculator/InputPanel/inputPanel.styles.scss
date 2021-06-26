@@ -1,0 +1,8 @@
+.container {
+  margin-top: 2rem;
+  &__panel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
