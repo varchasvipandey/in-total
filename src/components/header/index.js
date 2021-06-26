@@ -1,15 +1,14 @@
 import { Link } from "preact-router/match";
 import style from "./style.scss";
 
-import GearIcon from "../gearIcon/gearIcon";
-
-/* Config */
-import { settingIconStyle } from "./config";
+import Toggle from "../toggle/toggle";
 
 const Header = ({ handleTheme = () => {} }) => (
   <header>
     <div className="limit-width float-container">
-      <GearIcon style={settingIconStyle} cta={handleTheme} />
+      <div className={style.toggleContainer}>
+        <Toggle handleTheme={handleTheme} />
+      </div>
     </div>
     <nav>
       <Link activeClassName={style.link__active} class={style.link} href="/">
