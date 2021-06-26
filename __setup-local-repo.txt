@@ -1,0 +1,2 @@
+git remote set-url origin https://<USERNAME>:<PASSWORD>@github.com/varchasvipandey/in-total.git
+-- repo url without https
