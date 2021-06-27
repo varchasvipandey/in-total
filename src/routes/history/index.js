@@ -3,10 +3,18 @@
 import style from "./style.scss";
 
 import { useEffect, useState } from "preact/hooks";
-// import { route } from "preact-router";
+import { route } from "preact-router";
+
+// gestures
+import { handleTouchStart, handleTouchMove } from "../../utils/gesture";
 
 const History = () => {
   const [history, setHistory] = useState([]);
+
+  const handleSwipe = (e) => {
+    const direction = handleTouchMove(e);
+    if (direction === "right") route("/");
+  };
 
   useEffect(() => {
     const current = JSON.parse(localStorage.getItem("in-total-history"));
@@ -14,15 +22,11 @@ const History = () => {
     else if (current && current.length) setHistory(current);
   }, []);
 
-  const handleSwipe = (e) => {
-    const { clientX, clientY, screenX, screenY } = e.changedTouches[0];
-    console.log({ clientX, clientY, screenX, screenY });
-  };
-
   return (
     <div
       className="limit-width container"
       onTouchMove={handleSwipe}
+      onTouchStart={handleTouchStart}
       // TODO: Detect touch angle
     >
       {history?.map((entry) => (

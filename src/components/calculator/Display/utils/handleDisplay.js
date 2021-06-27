@@ -6,6 +6,6 @@ export const handleDisplayTextSize = (text) => {
   } else if (text?.length >= 8) {
     return "3.6rem";
   } else if (text?.length < 8) {
-    return "6.4rem";
+    return "8.2rem";
   }
 };

@@ -1,9 +1,8 @@
 .switch {
   position: relative;
   display: inline-block;
-  width: 48px;
-  height: 20px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  width: 36px;
+  height: 14px;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -21,15 +20,16 @@
   -webkit-transition: 0.4s;
   transition: 0.4s;
   border-radius: 34px !important;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
 .slider::before {
   position: absolute;
   content: "";
-  height: 24px;
-  width: 24px;
+  height: 20px;
+  width: 20px;
   left: 0px;
-  bottom: -2px;
+  bottom: -3.6px;
   background-color: var(--color-primary);
   border-radius: 50%;
   -webkit-transition: 0.4s;
@@ -39,5 +39,5 @@
 input:checked + .slider::before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
-  transform: translateX(26px);
+  transform: translateX(16px);
 }

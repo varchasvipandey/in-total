@@ -14,11 +14,19 @@ import {
 } from "./utils/config";
 import { updateQuery, getSubQuery } from "./utils/calculation";
 
+// gestures
+import { handleTouchStart, handleTouchMove } from "../../utils/gesture";
+
 const Calculator = () => {
   const inputRef = useRef();
 
   const [calculationInput, setCalculationInput] = useState("");
   const [subDisplayValue, setSubDisplayValue] = useState("");
+
+  const handleSwipe = (e) => {
+    const direction = handleTouchMove(e);
+    if (direction === "left") route("/history");
+  };
 
   const handleButton = (value) => {
     const updatedCalculationInput = updateQuery(value, calculationInput);
@@ -39,8 +47,9 @@ const Calculator = () => {
 
   return (
     <div
-      className="limit-width container center"
-      onTouchMove={() => route("/history")}
+      className="limit-width container center bottom"
+      onTouchMove={handleSwipe}
+      onTouchStart={handleTouchStart}
       onKeyDown={handleKeyboardInput}
     >
       <div className={style.calculator}>

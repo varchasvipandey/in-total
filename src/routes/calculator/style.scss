@@ -1,3 +1,10 @@
 .calculator {
-  padding: 4.2rem 0rem;
+  padding: 12rem 0rem 2rem 0;
+  animation: popIn 0.3s;
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0%);
+  }
 }

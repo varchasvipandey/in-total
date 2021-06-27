@@ -58,6 +58,10 @@ body {
   justify-content: center;
 }
 
+.container.bottom {
+  justify-content: flex-end;
+}
+
 .wrapper {
   background-color: var(--color-background);
 }
