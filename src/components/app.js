@@ -4,6 +4,7 @@ import Header from "./header";
 
 import Calculator from "../routes/calculator";
 import History from "../routes/history";
+import Redirect from "../routes/redirect";
 
 const App = () => {
   let darkMode = false; // default dark theme
@@ -30,7 +31,8 @@ const App = () => {
       <div className="wrapper">
         <Header handleTheme={handleTheme} />
         <Router>
-          <Calculator path="/" />
+          <Redirect path="/" to="/calculator" />
+          <Calculator path="/calculator" />
           <History path="/history" />
         </Router>
       </div>
