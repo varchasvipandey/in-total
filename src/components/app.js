@@ -9,11 +9,11 @@ import Redirect from "../routes/redirect";
 const App = () => {
   let darkMode = false; // default dark theme
 
-  // if (typeof window !== "undefined") {
-  //   darkMode = localStorage.getItem("in-total-theme") === "dark";
-  // }
+  if (typeof window !== "undefined") {
+    darkMode = localStorage.getItem("in-total-theme") === "dark";
+  }
 
-  // let appClassNames = darkMode ? "default-theme dark-theme" : "default-theme";
+  let appClassNames = darkMode ? "default-theme dark-theme" : "default-theme";
 
   const handleTheme = () => {
     const appClasses = document.getElementById("app").classList;
@@ -27,7 +27,7 @@ const App = () => {
   };
 
   return (
-    <div id="app" className={"default-theme dark-theme"}>
+    <div id="app" className={appClassNames}>
       <div className="wrapper">
         <Header handleTheme={handleTheme} />
         <Router>
