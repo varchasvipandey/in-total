@@ -1,11 +1,16 @@
 {
+  "author": "Varchasvi Pandey",
+  "developer": {"name": "Varchasvi Pandey", "url": "https://linkedin.com/in/varchasvipandey"},
   "name": "In Total",
   "short_name": "In Total",
+  "version": "1.0.2",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#fff",
-  "theme_color": "#673ab8",
+  "background_color": "#eee",
+  "theme_color": "#e94646",
+  "description": "Calculate in a better way ♥",
+  "offline_enabled": true,
   "icons": [
     {
       "src": "/assets/icons/android-chrome-192x192.png",
