@@ -11,7 +11,11 @@ const Header = ({ handleTheme = () => {} }) => (
       </div>
     </div>
     <nav>
-      <Link activeClassName={style.link__active} class={style.link} href="/">
+      <Link
+        activeClassName={style.link__active}
+        class={style.link}
+        href="/calculator"
+      >
         Home
       </Link>
       <Link

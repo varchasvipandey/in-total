@@ -4,3 +4,4 @@ node_modules
 .gitconfig
 __setup-local-repo.txt
 RAW
+size-plugin.json
