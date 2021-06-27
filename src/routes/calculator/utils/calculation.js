@@ -11,7 +11,7 @@ export const getSubQuery = () => {
 };
 
 const createNewHistory = (entry) => {
-  localStorage.setItem("in-total-history", [JSON.stringify(entry)]);
+  localStorage.setItem("in-total-history", JSON.stringify([entry]));
 };
 
 const updateHistory = (buttonValue, result) => {
