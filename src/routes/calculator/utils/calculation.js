@@ -23,7 +23,8 @@ const updateHistory = (buttonValue, result) => {
   console.log(entry);
 
   const history = JSON.parse(localStorage.getItem("in-total-history"));
-  if (!history || history.length < 1) createNewHistory(entry);
+  if (!history || history.length < 1 || !history.length)
+    createNewHistory(entry);
   else
     localStorage.setItem(
       "in-total-history",
@@ -42,9 +43,10 @@ const handleActionValues = (buttonValue, currentQuery) => {
   if (buttonValue === "%") {
     let queryString = currentQuery.replaceAll("/", "÷").replaceAll("*", "x");
 
+    saveSubQuery(`${queryString}%`);
+
     try {
       let result = eval(modQuery) / 100;
-      saveSubQuery(`${queryString}%`);
       return result;
     } catch {
       return currentQuery;

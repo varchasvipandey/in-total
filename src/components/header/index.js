@@ -3,11 +3,11 @@ import style from "./style.scss";
 
 import Toggle from "../toggle/toggle";
 
-const Header = ({ handleTheme = () => {} }) => (
+const Header = ({ handleTheme = () => {}, isDarkModeOn = false }) => (
   <header>
     <div className="limit-width float-container">
       <div className={style.toggleContainer}>
-        <Toggle handleTheme={handleTheme} />
+        <Toggle cta={handleTheme} checked={isDarkModeOn} />
       </div>
     </div>
     <nav>

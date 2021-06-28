@@ -1,4 +1,5 @@
 import { Router } from "preact-router";
+import { useEffect, useState } from "preact/hooks";
 
 import Header from "./header";
 
@@ -7,29 +8,40 @@ import History from "../routes/history";
 import Redirect from "../routes/redirect";
 
 const App = () => {
-  let darkMode = false; // default dark theme
+  const [darkMode, setDarkMode] = useState();
 
-  if (typeof window !== "undefined") {
-    darkMode = localStorage.getItem("in-total-theme") === "dark";
-  }
-
-  let appClassNames = darkMode ? "default-theme dark-theme" : "default-theme";
-
-  const handleTheme = () => {
-    const appClasses = document.getElementById("app").classList;
-    appClasses.toggle("dark-theme");
-
+  const saveLocalTheme = (isDarkMode) => {
     if (typeof window !== "undefined") {
-      appClasses.value.includes("dark-theme")
-        ? localStorage.setItem("in-total-theme", "dark")
-        : localStorage.setItem("in-total-theme", "default");
+      if (!isDarkMode) localStorage.setItem("in-total-theme", "default");
+      else if (isDarkMode) localStorage.setItem("in-total-theme", "dark");
     }
   };
 
+  const handleTheme = () => {
+    setDarkMode((prev) => {
+      // if dark mode was on --> // disable dark mode local
+      if (prev) saveLocalTheme(false);
+      // if dark mode was off --> // enable dark mode local
+      else if (!prev) saveLocalTheme(true);
+      return !prev;
+    });
+  };
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const localTheme = localStorage.getItem("in-total-theme");
+      if (localTheme !== "dark") setDarkMode(false);
+      else setDarkMode(true);
+    }
+  }, []);
+
   return (
-    <div id="app" className={appClassNames}>
+    <div
+      id="app"
+      className={darkMode ? "default-theme dark-theme" : "default-theme"}
+    >
       <div className="wrapper">
-        <Header handleTheme={handleTheme} />
+        <Header handleTheme={handleTheme} isDarkModeOn={darkMode} />
         <Router>
           <Redirect path="/" to="/calculator" />
           <Calculator path="/calculator" />
