@@ -1,9 +1,10 @@
 /* HISTORY */
 
-import style from "./style.scss";
-
 import { useEffect, useState } from "preact/hooks";
 import { route } from "preact-router";
+
+import HistoryEntry from "../../components/historyEntry";
+import ClearHistory from "../../components/clearHistory";
 
 // gestures
 import { handleTouchStart, handleTouchMove } from "../../utils/gesture";
@@ -11,9 +12,16 @@ import { handleTouchStart, handleTouchMove } from "../../utils/gesture";
 const History = () => {
   const [history, setHistory] = useState([]);
 
+  // Handle route switch on swipe
   const handleSwipe = (e) => {
     const direction = handleTouchMove(e);
     if (direction === "right") route("/");
+  };
+
+  // Handle clear history
+  const clearHistory = () => {
+    localStorage.removeItem("in-total-history");
+    setHistory([]);
   };
 
   useEffect(() => {
@@ -27,14 +35,33 @@ const History = () => {
       className="limit-width container"
       onTouchMove={handleSwipe}
       onTouchStart={handleTouchStart}
-      // TODO: Detect touch angle
     >
-      {history?.map((entry) => (
-        <div key={entry.time} className={style.entry}>
-          <p className={style.entry__query}>{entry.query}</p>
-          <p className={style.entry__time}>{entry.time}</p>
+      {/* Clear history entries */}
+      {!!history?.length && (
+        <div style={{ margin: "3.2rem 0 1.2rem 0" }}>
+          <ClearHistory clearHistory={clearHistory} />
         </div>
-      ))}
+      )}
+
+      {/* Entries */}
+      {!!history?.length &&
+        history?.map((entry) => (
+          <HistoryEntry key={entry.time} entry={entry} />
+        ))}
+
+      {/* No history */}
+      {(!history || !history.length) && (
+        <p
+          style={{
+            marginTop: "3.2rem",
+            color: "var(--color-text)",
+            fontSize: "2.4rem",
+            textAlign: "center",
+          }}
+        >
+          No calculation history
+        </p>
+      )}
     </div>
   );
 };
